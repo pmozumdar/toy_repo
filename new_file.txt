@@ -1,1 +1,4 @@
 This is a new file to try some git commands...
+
+Now I know how to add a file for version control in git (using git add command) and record a particular version using git commit command.
+We also need to add a message during a commit which helps to keep track of the purpose of each commit. 
