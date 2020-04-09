@@ -4,3 +4,6 @@ Now I know how to add a file for version control in git (using git add command) 
 We also need to add a message during a commit which helps to keep track of the purpose of each commit.
 
 We can just use some flags to do the task of add command and writng a message in the log file while executing a commit command.
+
+We cann see the difference between versions, changes done in the working directory but yet not staged or changes staged but yet not commit and 
+some more using git diff command. 
