@@ -54,7 +54,7 @@ def rule_in_base(rule_number, base, key_number):
     rule_number_in_base = []
     dividend = rule_number
     quotient = rule_number
-    while quotient >= base :
+    while quotient >= base:
         quotient = dividend // base
         rule_number_in_base.insert(0, dividend % base)
         dividend = quotient
@@ -63,7 +63,7 @@ def rule_in_base(rule_number, base, key_number):
 
     # Added paranthesis in the following line so that it can be divided into
     # two lines without breaking continuation
-    rule_number_in_base = ([0]* (key_number - len(rule_number_in_base)) 
+    rule_number_in_base = ([0] * (key_number - len(rule_number_in_base)) 
                            + rule_number_in_base)
     #print(rule_number_in_base)
 
@@ -95,8 +95,8 @@ def lookup_table(rule_number):
     neighborhoods = [(0,0), (0,1), (0,2), (1,0), (1,1), (1,2), (2,0), 
                      (2,1), (2,2)]
 
-    rule_number_in_base = rule_in_base(rule_number, base= 3, 
-                                       key_number = len(neighborhoods))
+    rule_number_in_base = rule_in_base(rule_number, base=3, 
+                                       key_number=len(neighborhoods))
 
 
     return dict(zip(neighborhoods, rule_number_in_base))
@@ -123,7 +123,7 @@ def spacetime_diagram(spacetime_field, size=12, colors=plt.cm.Greys):
     plt.figure(figsize=(size,size))
     plt.imshow(spacetime_field, cmap=colors, interpolation='nearest')
     #plt.show()
-    plt.svaefig("tri_state_CA.pdf", dpi = 100)
+    plt.svaefig("tri_state_CA.pdf", dpi=100)
 
 
 class TriStateCA(object):
@@ -156,7 +156,7 @@ class TriStateCA(object):
             List of the spatial configuration of the ECA at the current time
         '''
         for i in initial_condition:
-            if i not in [0,1, 2]:
+            if i not in [0, 1, 2]:
                 raise ValueError("initial condition must be a list of 0s, 1s"
                                  "and 2s")
 
