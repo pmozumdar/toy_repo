@@ -102,22 +102,23 @@ def lookup_table(rule_number):
     return dict(zip(neighborhoods, rule_number_in_base))
 
 
-
 def spacetime_diagram(spacetime_field, size=12, colors=plt.cm.Greys):
     '''
-    Produces a simple spacetime diagram image using matplotlib imshow with 'nearest' interpolation.
+    Produces a simple spacetime diagram image using matplotlib imshow with 
+    'nearest' interpolation.
 
-   Parameters
+    Parameters
     ---------
     spacetime_field: array-like (2D)
-        1+1 dimensional spacetime field, given as a 2D array or list of lists. Time should be dimension 0;
-        so that spacetime_field[t] is the spatial configuration at time t.
+        1+1 dimensional spacetime field, given as a 2D array or list of lists.
+        Time should be dimension 0; so that spacetime_field[t] is the spatial 
+        configuration at time t.
 
     size: int, optional (default=12)
         Sets the size of the figure: figsize=(size,size)
     colors: matplotlib colormap, optional (default=plt.cm.Greys)
-        See https://matplotlib.org/tutorials/colors/colormaps.html for colormap choices.
-        A colormap 'cmap' is called as: colors=plt.cm.cmap
+        See https://matplotlib.org/tutorials/colors/colormaps.html for 
+        colormap choices. A colormap 'cmap' is called as: colors=plt.cm.cmap
     '''
     plt.figure(figsize=(size,size))
     plt.imshow(spacetime_field, cmap=colors, interpolation='nearest')
@@ -125,14 +126,14 @@ def spacetime_diagram(spacetime_field, size=12, colors=plt.cm.Greys):
     plt.svaefig("tri_state_CA.pdf", dpi = 100)
 
 
-
-class ECA_tri_state(object):
+class TriStateCA(object):
     '''
     Elementary cellular automata simulator for tri state cell.
     '''
     def __init__(self, rule_number, initial_condition):
         '''
-        Initializes the simulator for the given rule number and initial condition.
+        Initializes the simulator for the given rule number and initial 
+        condition.
 
         Parameters
         ----------
@@ -144,17 +145,20 @@ class ECA_tri_state(object):
         Attributes
         ----------
         lookup_table: dict
-            Lookup table for the ECA given as a dictionary, with neighborhood tuple keys.
+            Lookup table for the ECA given as a dictionary, with neighborhood 
+            tuple keys.
         initial: array_like
             Copy of the initial conditions used to instantiate the simulator
         spacetime: array_like
-            2D array (list of lists) of the spacetime field created by the simulator.
+            2D array (list of lists) of the spacetime field created by the 
+            simulator.
         current_configuration: array_like
             List of the spatial configuration of the ECA at the current time
         '''
         for i in initial_condition:
             if i not in [0,1, 2]:
-                raise ValueError("initial condition must be a list of 0s, 1s and 2s")
+                raise ValueError("initial condition must be a list of 0s, 1s"
+                                 "and 2s")
 
         self.lookup_table = lookup_table(rule_number)
         self.initial = initial_condition
@@ -164,22 +168,25 @@ class ECA_tri_state(object):
 
     def evolve(self, time_steps):
         '''
-        Evolves the current configuration of the ECA for the given number of time steps.
+        Evolves the current configuration of the ECA for the given number of 
+        time steps.
 
         Parameters
         ----------
         time_steps: int
-            Positive integer specifying the number of time steps for evolving the ECA.
+            Positive integer specifying the number of time steps for evolving
+            the ECA.
         '''
         if time_steps < 0:
             raise ValueError("time_steps must be a non-negative integer")
-        # try converting time_steps to int and raise a custom error if this can't be done
+        # try converting time_steps to int and raise a custom error if this 
+        # can't be done
         try:
             time_steps = int(time_steps)
         except ValueError:
             raise ValueError("time_steps must be a non-negative integer")
 
-        for _ in range(time_steps): # use underscore if the index will not be used
+        for _ in range(time_steps):#use underscore if the index willn't be used
             new_configuration = []
             for i in range(self._length):
 
@@ -190,5 +197,4 @@ class ECA_tri_state(object):
 
             self.current_configuration = new_configuration
             self.spacetime.append(new_configuration)
-
 
