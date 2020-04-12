@@ -22,33 +22,34 @@ def random_string(length):
     return [random.randint(0,2) for _ in range(length)]
 
 
-def rule_in_base(rule_number, base, Key_number):
+def rule_in_base(rule_number, base, key_number):
     '''
-    Convert the decimal integer rule number into the desired base value. Then zeros are padded to the left
-    if required to euqate the total bit number to Key_number.
+    Convert the decimal integer rule number into the desired base value. Then
+    zeros are padded to the left if required to euqate the total bit number to 
+    key_number.
 
     Parameters
     ----------
     rule_number: int
-             Positive decimal integer that specifies the rule number
+        Positive decimal integer that specifies the rule number.
 
     base: int
-             Positive integer the specifies the base or number of state of a cell
+        Positive integer the specifies the base or number of state of a cell.
 
-    Key_number: int
-             Positive integer that specifies the total number of tuples in the neighborhoods. We want the total
-             bit number in the rule_number after converting it to the desired base is equal to the tuples
-             in the neighborhoods or the total key number in the lookup table.
+    key_number: int
+        Positive integer that specifies the total number of tuples in the 
+        neighborhoods. We want the total bit number in the rule_number after 
+        converting it to the desired base is equal to the tuples in the 
+        neighborhoods or the total key number in the lookup table.
 
     Returns
     ----------
     rule_number_in_base : list
-             The decimal rule_number converted to the desired base as each element of the list represents
-             each bit
+        The decimal rule_number converted to the desired base as each element 
+        of the list represents each bit.
     '''
     if not isinstance(base, int) or base < 0:
         raise ValueError("base must be a positive int")
-
 
     rule_number_in_base = []
     dividend = rule_number
@@ -60,17 +61,19 @@ def rule_in_base(rule_number, base, Key_number):
     rule_number_in_base.insert(0, quotient)
     #print(rule_number_in_base)
 
-    rule_number_in_base = [0]* (Key_number - len(rule_number_in_base)) + rule_number_in_base
+    # Added paranthesis in the following line so that it can be divided into
+    # two lines without breaking continuation
+    rule_number_in_base = ([0]* (key_number - len(rule_number_in_base)) 
+                           + rule_number_in_base)
     #print(rule_number_in_base)
 
     return rule_number_in_base
 
 
-
 def lookup_table(rule_number):
     '''
-    Returns a dictionary which maps ECA neighborhoods to output values. This is different than 2 state
-    ECA case
+    Returns a dictionary which maps ECA neighborhoods to output values. This 
+    is different than 2 state ECA case.
 
     Parameters
     ----------
@@ -80,15 +83,20 @@ def lookup_table(rule_number):
     Returns
     -------
     lookup_table: dict
-        Lookup table dictionary that maps neighborhood tuples to their output according to the
-        ECA local evolution rule (i.e. the lookup table), as specified by the rule number.
+        Lookup table dictionary that maps neighborhood tuples to their output
+        according to the ECA local evolution rule (i.e. the lookup table), as 
+        specified by the rule number.
     '''
-    if not isinstance(rule_number, int) or rule_number < 0 or rule_number > 19682:
-        raise ValueError("rule_number must be an int between 0 and 19682, inclusive")
+    if (not isinstance(rule_number, int) or rule_number < 0
+            or rule_number > 19682):
+        raise ValueError("rule_number must be an int between 0 and 19682,"
+                         "inclusive")
 
-    neighborhoods = [(0,0), (0,1), (0,2), (1,0), (1,1), (1,2), (2,0), (2,1), (2,2)]
+    neighborhoods = [(0,0), (0,1), (0,2), (1,0), (1,1), (1,2), (2,0), 
+                     (2,1), (2,2)]
 
-    rule_number_in_base = rule_in_base(rule_number, base= 3, Key_number = len(neighborhoods))
+    rule_number_in_base = rule_in_base(rule_number, base= 3, 
+                                       key_number = len(neighborhoods))
 
 
     return dict(zip(neighborhoods, rule_number_in_base))
