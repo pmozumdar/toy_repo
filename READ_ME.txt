@@ -1,9 +1,8 @@
-<<<<<<< HEAD
+
 # My toy git repo and I am collaborating with Kyle
 
-=======
-# My toy git repog
->>>>>>> 2302ff35981bb3230b480ab3c209ec555104700f
+# changed these lines
+
 THis is a toy repository to learn git.
 
 'Hellow_world.py" prints "Hellow world". I am the author of this code.This is to practice with some git commands.
