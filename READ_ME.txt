@@ -1,4 +1,4 @@
-# My toy git repo
+# My toy git repo and I am collaborating with Kyle
 
 THis is a toy repository to learn git.
 
