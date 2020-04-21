@@ -123,7 +123,7 @@ def spacetime_diagram(spacetime_field, size=12, colors=plt.cm.Greys):
     plt.figure(figsize=(size,size))
     plt.imshow(spacetime_field, cmap=colors, interpolation='nearest')
     #plt.show()
-    plt.svaefig("tri_state_CA.pdf", dpi=100)
+    plt.savefig("tri_state_CA.pdf", dpi=100)
 
 
 class TriStateCA(object):
