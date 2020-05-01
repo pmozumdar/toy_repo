@@ -50,7 +50,7 @@ def proposal(current_proposal, proposal_width=0.2):
         be considered as the next value of the parameter.
     '''
     
-    next_proposal = norm(current_proposal, proposal_width).rvs()
+    next_proposal = np.random.normal(current_proposal, proposal_width)
         
     return next_proposal
 
@@ -147,16 +147,17 @@ plt.ylabel(r'P(a|{x})')
 plt.show()
 
 
-posterior_chain = generate_MCMC_chain(30000, 100, 5.0)
+posterior_chain = generate_MCMC_chain(30000, data, 5.0)
 plt.plot(posterior_chain)
 
 
-plt.hist(posterior_chain, density=True)
+plt.hist(posterior_chain, bins='auto', density=True)
 plt.plot(parameter_space,posterior/np.sqrt(np.sum(posterior**2)))
 plt.vlines(x=np.median(posterior_chain), ymin=0.0, ymax=0.2,
            color='k',label="MCMC mean")
 plt.vlines(x=parameter_space[posterior.argmax()], ymin=0.0, ymax=0.2,
            color='r', label="Analytic mean" )
+plt.vlines(x=2.718, ymin=0.0, ymax=1.0, colors='g', label='True value')
 plt.xlabel('a')
 plt.ylabel(r'P(a|{x})')
 plt.legend()
