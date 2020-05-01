@@ -125,7 +125,7 @@ def generate_MCMC_chain(sample_number, data,
  
         acceptance_probabilty = min(1.0, likelihood_ratio)
 
-        acceptance = np.random.randn() <= acceptance_probabilty 
+        acceptance = np.random.uniform() <= acceptance_probabilty 
         if acceptance:
             current_proposal = next_proposal
             posterior_chain = np.append(posterior_chain, next_proposal)
