@@ -85,7 +85,7 @@ def likelihood(proposal,data):
 
 
 
-def generate_MCMC_chain(sample_number, num_data_points, 
+def generate_MCMC_chain(sample_number, data, 
                         initial_proposal= 1.5):
     '''
     This function generates and return a MCMC chain
@@ -95,9 +95,8 @@ def generate_MCMC_chain(sample_number, num_data_points,
     sample_number: int
         Number of samples one wants to draw 
         
-    num_data_points: int
-        number of data points one wants to use in evaluating
-        likelihood.
+    data: list
+        The data to help evaluating the likelihood.
     
     initial_proposal: float
         The initial proposed point from where the chain can 
@@ -110,7 +109,7 @@ def generate_MCMC_chain(sample_number, num_data_points,
     '''
     
     posterior_chain = []
-    data = generate_data(num_data_points)
+    data = data
     current_proposal = initial_proposal
     
     for i in range(sample_number):
